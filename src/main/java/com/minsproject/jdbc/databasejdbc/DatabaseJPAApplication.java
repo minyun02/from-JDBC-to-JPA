@@ -31,8 +31,10 @@ public class DatabaseJPAApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		Course course = courseRepository.findById(10001L);
+		courseRepository.deleteById(10001L); //void 메서드기때문에 로그를 찍을 수 없다.
 
 		logger.info("Course 10001 -> {}", course);
+		courseRepository.save(new Course("Microservices in 100 steps"));
 //		logger.info("사용자 10001 -> {}", repository.findById(10001));
 //		logger.info("insert -> No of Rows Inserted {}", repository.merge(
 //				new User(
