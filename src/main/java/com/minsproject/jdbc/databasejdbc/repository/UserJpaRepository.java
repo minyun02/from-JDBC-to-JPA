@@ -1,8 +1,7 @@
-package com.minsproject.jdbc.databasejdbc.jpa;
+package com.minsproject.jdbc.databasejdbc.repository;
 
 
 import com.minsproject.jdbc.databasejdbc.entity.User;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
