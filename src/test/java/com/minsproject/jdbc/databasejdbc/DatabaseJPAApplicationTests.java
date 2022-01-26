@@ -47,4 +47,10 @@ class DatabaseJPAApplicationTests {
 		Course course1 = repository.findById(10001L);
 		assertEquals("Spring in 50 steps - updated", course.getName());
 	}
+
+	@Test
+	@DirtiesContext // 데이터를 지우는 테스트기때문에 애너테이션을 추가해서 테스트가 종료되면 리셋
+	public void playWithEntityManager() {
+		repository.playWithEntityManager();;
+	}
 }

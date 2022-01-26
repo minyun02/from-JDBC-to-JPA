@@ -1,10 +1,14 @@
 package com.minsproject.jdbc.databasejdbc.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "Course")
+@NamedQuery(name = "query_get_all", query = "select c from Course c")
 public class Course {
 
     @Id
@@ -12,6 +16,13 @@ public class Course {
     private Long id;
 
     private String name;
+
+    @UpdateTimestamp
+    @Column(name = "lastUpdatedDate")
+    private LocalDateTime lastUpdatedDate;
+
+    @CreationTimestamp
+    private LocalDateTime createdDate;
 
     protected Course(){}// protected로 접근을 막는다.
 

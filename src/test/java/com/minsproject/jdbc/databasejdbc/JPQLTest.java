@@ -1,0 +1,54 @@
+package com.minsproject.jdbc.databasejdbc;
+
+import com.minsproject.jdbc.databasejdbc.entity.Course;
+import com.minsproject.jdbc.databasejdbc.repository.CourseRepository;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+@ExtendWith(SpringExtension.class)
+@SpringBootTest(classes = DatabaseJPAApplication.class)
+class JPQLTest {
+
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+	@Autowired
+	EntityManager em;
+
+	@Test
+	public void jpql_basics() {
+//		Query q = em.createQuery("select c from Course c");
+		Query q = em.createNamedQuery("query_get_all");
+		List result = q.getResultList();
+		logger.info("select c from Course c -> {}", result);
+	}
+
+	@Test
+	public void jpql_typed() {
+		TypedQuery<Course> tq = em.createQuery("select c from Course c", Course.class);
+		List<Course> result = tq.getResultList();
+		logger.info("select c from Course c -> {}", result);
+	}
+
+	@Test
+	public void jpql_where() {
+		TypedQuery<Course> tq =
+				em.createQuery("select c from Course c where name like '%100 steps'", Course.class);
+		List<Course> result = tq.getResultList();
+		logger.info("select c from Course c where name like '%100 steps'-> {}", result);
+	}
+}
