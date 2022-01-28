@@ -20,3 +20,24 @@ insert into course(id, name, created_date, last_updated_date)
  values(10002, 'Spring in 50 steps', sysdate(), sysdate());
 insert into course(id, name, created_date, last_updated_date)
  values(10003, 'Spring Boot in 100 steps', sysdate(), sysdate());
+
+insert into student(id, name)
+ values(20001, 'Aaa');
+insert into student(id, name)
+ values(20002, 'Bbb');
+insert into student(id, name)
+ values(20003, 'Ccc');
+
+insert into passport(id, number)
+ values(40001, 'A123456');
+insert into passport(id, number)
+ values(40002, 'B123456');
+insert into passport(id, number)
+ values(40003, 'C123456');
+
+insert into review(id, rating, description)
+ values(50001, '5', 'great course');
+insert into review(id, rating, description)
+ values(50002, '4', 'good course');
+insert into review(id, rating, description)
+ values(50003, '3', 'okay course');
