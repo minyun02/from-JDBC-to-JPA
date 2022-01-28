@@ -16,6 +16,9 @@ public class Student {
     @Column(nullable = false)
     private String name;
 
+    @OneToOne
+    private Passport passport;
+
     protected Student(){}// protected로 접근을 막는다.
 
     public Student(String name) {
