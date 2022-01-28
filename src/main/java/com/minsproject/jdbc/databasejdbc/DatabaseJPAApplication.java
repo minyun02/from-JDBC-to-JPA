@@ -3,6 +3,7 @@ package com.minsproject.jdbc.databasejdbc;
 import com.minsproject.jdbc.databasejdbc.entity.Course;
 import com.minsproject.jdbc.databasejdbc.entity.User;
 import com.minsproject.jdbc.databasejdbc.repository.CourseRepository;
+import com.minsproject.jdbc.databasejdbc.repository.StudentRepository;
 import com.minsproject.jdbc.databasejdbc.repository.UserJpaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,13 +25,17 @@ public class DatabaseJPAApplication implements CommandLineRunner {
 	@Autowired
 	private CourseRepository courseRepository;
 
+	@Autowired
+	private StudentRepository studentRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(DatabaseJPAApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		courseRepository.playWithEntityManager();
+//		courseRepository.playWithEntityManager();
+		studentRepository.saveStudentWithPassport();
 //		Course course = courseRepository.findById(10001L);
 
 //		courseRepository.deleteById(10001L); //void 메서드기때문에 로그를 찍을 수 없다.
