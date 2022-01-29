@@ -2,6 +2,7 @@ package com.minsproject.jdbc.databasejdbc;
 
 import com.minsproject.jdbc.databasejdbc.entity.Course;
 import com.minsproject.jdbc.databasejdbc.entity.Review;
+import com.minsproject.jdbc.databasejdbc.entity.Student;
 import com.minsproject.jdbc.databasejdbc.entity.User;
 import com.minsproject.jdbc.databasejdbc.repository.CourseRepository;
 import com.minsproject.jdbc.databasejdbc.repository.StudentRepository;
@@ -37,10 +38,13 @@ public class DatabaseJPAApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		List<Review> reviews = new ArrayList<>();
-		reviews.add(new Review("1","very bad"));
-		reviews.add(new Review("3","it was ok..."));
-		courseRepository.addReviewsForCourse(10003L, reviews);
+		Student student = new Student("ME");
+		Course course = new Course("ME COURSE TEST");
+		studentRepository.insertStudentAndCourse(student, course);
+//		List<Review> reviews = new ArrayList<>();
+//		reviews.add(new Review("1","very bad"));
+//		reviews.add(new Review("3","it was ok..."));
+//		courseRepository.addReviewsForCourse(10003L, reviews);
 //		courseRepository.addHardCodedReviewsForCourse();
 
 //		courseRepository.playWithEntityManager();

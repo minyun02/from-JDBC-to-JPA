@@ -1,5 +1,6 @@
 package com.minsproject.jdbc.databasejdbc.repository;
 
+import com.minsproject.jdbc.databasejdbc.entity.Course;
 import com.minsproject.jdbc.databasejdbc.entity.Passport;
 import com.minsproject.jdbc.databasejdbc.entity.Student;
 import org.slf4j.Logger;
@@ -65,5 +66,25 @@ public class StudentRepository {
         //Database Operation 4 - update student
         student.setName("Ranga - updated");
         //Persistence Context (student++ , passport++)
+    }
+
+    public void insertHardCodedStudentAndCourse(){
+        Student student = new Student("Jack");
+        Course course = new Course("JACK COURSE TEST");
+
+//        em.persist(student);
+
+        student.addCourses(course);
+        course.addStudents(student);
+        em.persist(student);
+        em.persist(course);
+    }
+
+    public void insertStudentAndCourse(Student student, Course course){
+        student.addCourses(course);
+        course.addStudents(student);
+
+        em.persist(student);
+        em.persist(course);
     }
 }

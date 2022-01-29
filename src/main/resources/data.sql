@@ -42,3 +42,12 @@ insert into review(id, rating, description, course_id)
  values(50002, '4', 'good course', 10001);
 insert into review(id, rating, description, course_id)
  values(50003, '3', 'okay course', 10003);
+
+insert into student_course(student_id, course_id)
+values(20001, 10001);
+insert into student_course(student_id, course_id)
+values(20002, 10001);
+insert into student_course(student_id, course_id)
+values(20003, 10001);
+insert into student_course(student_id, course_id)
+values(20001, 10003);
