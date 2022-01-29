@@ -1,6 +1,7 @@
 package com.minsproject.jdbc.databasejdbc;
 
 import com.minsproject.jdbc.databasejdbc.entity.Course;
+import com.minsproject.jdbc.databasejdbc.entity.Review;
 import com.minsproject.jdbc.databasejdbc.entity.User;
 import com.minsproject.jdbc.databasejdbc.repository.CourseRepository;
 import com.minsproject.jdbc.databasejdbc.repository.StudentRepository;
@@ -12,7 +13,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @SpringBootApplication
 public class DatabaseJPAApplication implements CommandLineRunner {
@@ -34,7 +37,12 @@ public class DatabaseJPAApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		courseRepository.addReviewsForCourse();
+		List<Review> reviews = new ArrayList<>();
+		reviews.add(new Review("1","very bad"));
+		reviews.add(new Review("3","it was ok..."));
+		courseRepository.addReviewsForCourse(10003L, reviews);
+//		courseRepository.addHardCodedReviewsForCourse();
+
 //		courseRepository.playWithEntityManager();
 //		studentRepository.saveStudentWithPassport();
 //		Course course = courseRepository.findById(10001L);
