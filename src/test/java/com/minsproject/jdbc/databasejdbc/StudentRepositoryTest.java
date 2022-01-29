@@ -3,8 +3,9 @@ package com.minsproject.jdbc.databasejdbc;
 import com.minsproject.jdbc.databasejdbc.entity.Passport;
 import com.minsproject.jdbc.databasejdbc.entity.Student;
 import com.minsproject.jdbc.databasejdbc.repository.StudentRepository;
-import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,29 +39,29 @@ public class StudentRepositoryTest {
         logger.info("passport -> {}", student.getPassport());
     }
 
-    @Test
-    @Transactional
-    public void setAddressDetails() {
-        Student student = em.find(Student.class, 20001L);
-        student.setAddress(new Address("No 101", "Some Street", "Hyderabad"));
-        em.flush();
-    }
+//    @Test
+//    @Transactional
+//    public void setAddressDetails() {
+//        Student student = em.find(Student.class, 20001L);
+//        student.setAddress(new Address("No 101", "Some Street", "Hyderabad"));
+//        em.flush();
+//    }
 
     @Test
     @Transactional
     public void retrievePassportAndAssociatedStudent() {
-        Passport passport = em.find(Passport.class, 40001L);
+        Passport passport = em.find(Passport.class, 1L);
         logger.info("passport -> {}", passport);
         logger.info("student -> {}", passport.getStudent());
     }
 
-    @Test
-    @Transactional
-    public void retrieveStudentAndCourses() {
-        Student student = em.find(Student.class, 20001L);
-
-        logger.info("student -> {}", student);
-        logger.info("courses -> {}", student.getCourses());
-    }
+//    @Test
+//    @Transactional
+//    public void retrieveStudentAndCourses() {
+//        Student student = em.find(Student.class, 20001L);
+//
+//        logger.info("student -> {}", student);
+//        logger.info("courses -> {}", student.getCourses());
+//    }
 
 }

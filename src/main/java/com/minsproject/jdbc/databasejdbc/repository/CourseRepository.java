@@ -1,6 +1,7 @@
 package com.minsproject.jdbc.databasejdbc.repository;
 
 import com.minsproject.jdbc.databasejdbc.entity.Course;
+import com.minsproject.jdbc.databasejdbc.entity.Review;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +56,26 @@ public class CourseRepository {
 //        em.refresh(newCourse);
 
 //        em.flush();
+    }
+
+    public void addReviewsForCourse() {
+        //get the course 10003
+        Course course = findById(10003L);
+        logger.info("course.getReviews -> {}", course.getReviews());
+
+        //add 2 reviews to it
+        Review review1 = new Review("1","very bad");
+        Review review2 = new Review("3","it was ok...");
+
+        //setting the relationship
+        course.addReview(review1);
+        review1.setCourse(course);
+
+        course.addReview(review2);
+        review2.setCourse(course);
+
+        //save to the database
+        em.persist(review1);
+        em.persist(review2);
     }
 }

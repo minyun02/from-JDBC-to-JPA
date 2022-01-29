@@ -34,8 +34,9 @@ public class DatabaseJPAApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		courseRepository.addReviewsForCourse();
 //		courseRepository.playWithEntityManager();
-		studentRepository.saveStudentWithPassport();
+//		studentRepository.saveStudentWithPassport();
 //		Course course = courseRepository.findById(10001L);
 
 //		courseRepository.deleteById(10001L); //void 메서드기때문에 로그를 찍을 수 없다.
