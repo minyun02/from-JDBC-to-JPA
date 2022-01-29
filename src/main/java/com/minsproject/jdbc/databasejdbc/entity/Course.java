@@ -29,6 +29,9 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private List<Review> reviews = new ArrayList<>();
 
+    @ManyToMany
+    private List<Student> students = new ArrayList<>();
+
     protected Course(){}// protected로 접근을 막는다.
 
     public Course(String name){ //파라미터가 있는 생성자를 만들면 java에서 제공하는 파라미터 없는 생성자 기능이 상실 따라서 파라미터가 없는 생성자를 따로 만들어주아야한다
@@ -57,6 +60,18 @@ public class Course {
 
     public void removeReview(Review review) {
         this.reviews.remove(review);
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void addStudents(Student student) {
+        this.students.add(student);
+    }
+
+    public void removeStudents(Student student) {
+        this.students.remove(student);
     }
 
     @Override
