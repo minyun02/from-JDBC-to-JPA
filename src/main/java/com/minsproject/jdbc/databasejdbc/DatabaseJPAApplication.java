@@ -1,10 +1,8 @@
 package com.minsproject.jdbc.databasejdbc;
 
-import com.minsproject.jdbc.databasejdbc.entity.Course;
-import com.minsproject.jdbc.databasejdbc.entity.Review;
-import com.minsproject.jdbc.databasejdbc.entity.Student;
-import com.minsproject.jdbc.databasejdbc.entity.User;
+import com.minsproject.jdbc.databasejdbc.entity.*;
 import com.minsproject.jdbc.databasejdbc.repository.CourseRepository;
+import com.minsproject.jdbc.databasejdbc.repository.EmployeeRepository;
 import com.minsproject.jdbc.databasejdbc.repository.StudentRepository;
 import com.minsproject.jdbc.databasejdbc.repository.UserJpaRepository;
 import org.slf4j.Logger;
@@ -14,6 +12,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,15 +31,20 @@ public class DatabaseJPAApplication implements CommandLineRunner {
 	@Autowired
 	private StudentRepository studentRepository;
 
+	@Autowired
+	private EmployeeRepository employeeRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(DatabaseJPAApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		Student student = new Student("ME");
-		Course course = new Course("ME COURSE TEST");
-		studentRepository.insertStudentAndCourse(student, course);
+		employeeRepository.insert(new PartTimeEmployee("Park", new BigDecimal("20")));
+		employeeRepository.insert(new FullTimeEmployee("Jack", new BigDecimal("10000")));
+//		Student student = new Student("ME");
+//		Course course = new Course("ME COURSE TEST");
+//		studentRepository.insertStudentAndCourse(student, course);
 //		List<Review> reviews = new ArrayList<>();
 //		reviews.add(new Review("1","very bad"));
 //		reviews.add(new Review("3","it was ok..."));
