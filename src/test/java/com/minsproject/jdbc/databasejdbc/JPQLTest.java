@@ -1,6 +1,7 @@
 package com.minsproject.jdbc.databasejdbc;
 
 import com.minsproject.jdbc.databasejdbc.entity.Course;
+import com.minsproject.jdbc.databasejdbc.entity.Student;
 import com.minsproject.jdbc.databasejdbc.repository.CourseRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -50,5 +51,70 @@ class JPQLTest {
 				em.createQuery("select c from Course c where name like '%100 steps'", Course.class);
 		List<Course> result = tq.getResultList();
 		logger.info("select c from Course c where name like '%100 steps'-> {}", result);
+	}
+
+	@Test
+	public void jpql_courses_without_students() {
+		TypedQuery<Course> tq =
+				em.createQuery("select c from Course c where c.students is empty", Course.class);
+		List<Course> result = tq.getResultList();
+		logger.info("results -> {}", result);
+	}
+
+	@Test
+	public void jpql_courses_atleast_2_students() {
+		TypedQuery<Course> tq =
+				em.createQuery("select c from Course c where size(c.students) >= 2", Course.class);
+		List<Course> result = tq.getResultList();
+		logger.info("results -> {}", result);
+	}
+
+	@Test
+	public void jpql_courses_ordered_by_students() {
+		TypedQuery<Course> tq =
+				em.createQuery("select c from Course c order by size(c.students)", Course.class);
+		List<Course> result = tq.getResultList();
+		logger.info("results -> {}", result);
+	}
+
+	@Test
+	public void jpql_passports_in_certain_pattern() {
+		TypedQuery<Student> tq =
+				em.createQuery("select s from Student s where s.passport.number like '%1%'", Student.class);
+		List<Student> result = tq.getResultList();
+		logger.info("results -> {}", result);
+	}
+
+	@Test
+	public void join() {
+		 Query query =
+				em.createQuery("select c, s from Course c JOIN c.students s");
+		List<Object[]> result = query.getResultList();
+		logger.info("results size -> {}", result.size());
+		for(Object[] str : result){
+			logger.info("Course{}, Students{}", str[0], str[1]);
+		}
+	}
+
+	@Test
+	public void left_join() {
+		Query query =
+				em.createQuery("select c, s from Course c LEFT JOIN c.students s");
+		List<Object[]> result = query.getResultList();
+		logger.info("results size -> {}", result.size());
+		for(Object[] str : result){
+			logger.info("Course{}, Students{}", str[0], str[1]);
+		}
+	}
+
+	@Test
+	public void cross_join() {
+		Query query =
+				em.createQuery("select c, s from Course c, Student s");
+		List<Object[]> result = query.getResultList();
+		logger.info("results size -> {}", result.size());
+		for(Object[] str : result){
+			logger.info("Course{}, Students{}", str[0], str[1]);
+		}
 	}
 }

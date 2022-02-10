@@ -40,8 +40,8 @@ public class DatabaseJPAApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		employeeRepository.insert(new PartTimeEmployee("Park", new BigDecimal("20")));
-		employeeRepository.insert(new FullTimeEmployee("Jack", new BigDecimal("10000")));
+//		employeeRepository.insert(new PartTimeEmployee("Park", new BigDecimal("20")));
+//		employeeRepository.insert(new FullTimeEmployee("Jack", new BigDecimal("10000")));
 //		Student student = new Student("ME");
 //		Course course = new Course("ME COURSE TEST");
 //		studentRepository.insertStudentAndCourse(student, course);
